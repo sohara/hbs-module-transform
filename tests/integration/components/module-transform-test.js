@@ -28,3 +28,13 @@ test('it transforms a helper invocation with a subexpression using concat and a 
   `);
   assert.ok(this.$('.transformed-component').text().includes('templates.components.test-cases.subexpression-param.my.special.path.halp'), 'Dummy component outputs the concated path with bound value');
 });
+
+test('it transforms a helper invocation with a simple bound value', function(assert) {
+  this.set('specialVar', 'halp');
+  this.render(hbs`
+    {{#module-transform}}
+      {{test-cases/bound-value specialVar=specialVar}}
+    {{/module-transform}}
+  `);
+  assert.ok(this.$('.transformed-component').text().includes('templates.components.test-cases.bound-value.halp'), 'Dummy component outputs the concated path with bound value');
+});
